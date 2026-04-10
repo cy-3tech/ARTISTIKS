@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArtiStiks - Official Website</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;700;900&family=Permanent+Marker&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+       
+        :root {
+            --primary: #ff6b00;
+            --secondary: #ffc107;
+            --accent: #e63946;
+            --dark: #1a1a1a;
+            --darker: #0a0a0a;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --street-glow: 0 0 15px rgba(255, 107, 0, 0.7);
+            --urban-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            --kasi-gradient: linear-gradient(135deg, #ff6b00, #e63946, #ffc107);
+        }
+        
+        body {
+            background: var(--darker);
+            color: var(--light);
+            min-height: 100vh;
+            padding: 20px;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(255, 107, 0, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(230, 57, 70, 0.15) 0%, transparent 20%),
+                url('image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%230a0a0a"/><path d="M0,0 L100,100 M100,0 L0,100" stroke="%23333" stroke-width="0.5" opacity="0.3"/></svg>');
+            background-attachment: fixed;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;            background: 
+                radial-gradient(circle at 20% 35%, rgba(255, 193, 7, 0.08) 0%, transparent 25%),
+                radial-gradient(circle at 85% 15%, rgba(230, 57, 70, 0.1) 0%, transparent 30%),
+                radial-gradient(circle at 50% 80%, rgba(255, 107, 0, 0.12) 0%, transparent 35%);
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            padding: 0 15px;
+        }
+        
+        /* Graffiti header effect */
+        .graffiti-header {
+            position: relative;
+            text-align: center;
+            padding: 40px 30px;
+            margin-bottom: 35px;
+            background: rgba(26, 26, 26, 0.38);
+            border-radius: 20px;
+            border: 3px solid var(--primary);
+            box-shadow: var(--urban-shadow), var(--street-glow);
+            overflow: hidden;
+        }
+        
+        @keyframes ascendKasi {
+            0%   { transform: translateY(260px) rotate(-20deg); opacity: 0; }
+            8%   { opacity: 0.12; }
+            30%  { transform: translateY(160px) rotate(-10deg); opacity: 0.14; }
+            55%  { transform: translateY(60px)  rotate(-18deg); opacity: 0.1; }
+            80%  { transform: translateY(-60px) rotate(-8deg);  opacity: 0.08; }
+            100% { transform: translateY(-180px) rotate(-16deg); opacity: 0; }
+        }
+
+        @keyframes ascendNova {
+            0%   { transform: translateY(280px) rotate(15deg);  opacity: 0; }
+            8%   { opacity: 0.13; }
+            30%  { transform: translateY(175px) rotate(6deg);   opacity: 0.15; }
+            55%  { transform: translateY(70px)  rotate(14deg);  opacity: 0.11; }
+            80%  { transform: translateY(-50px) rotate(4deg);   opacity: 0.07; }
+            100% { transform: translateY(-190px) rotate(12deg); opacity: 0; }
+        }
+
+        .graffiti-header::before {
+            content: "KASI";
+            position: absolute;            bottom: 0;
+            left: 10%;
+            font-family: 'Permanent Marker', cursive;
+            font-size: 8rem;
+            color: rgba(255, 107, 0, 0.1);
+            z-index: 0;
+            letter-spacing: -5px;
+            text-shadow: 0 0 10px rgba(255, 193, 7, 0.5);
+            animation: ascendKasi 6s ease-in-out infinite;
+        }
+        
+        .graffiti-header::after {
+            content: "NOVA";
+            position: absolute;
+            bottom: 0;
+            right: 10%;
+            font-family: 'Permanent Marker', cursive;
+            font-size: 7rem;
+            color: rgba(230, 57, 70, 0.12);
+            z-index: 0;
+            letter-spacing: -3px;
+            text-shadow: 0 0 15px rgba(255, 107, 0, 0.4);
+            animation: ascendNova 6s ease-in-out infinite 2.5s;
+        }
+        
+        .artist-profile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .artist-image {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--primary);
+            box-shadow: 0 0 25px rgba(255, 107, 0, 0.6), 
+                        0 0 40px rgba(230, 57, 70, 0.4),
+                        inset 0 0 20px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #333, #1a1a1a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Bebas Neue', cursive;
+            font-size: 2.5rem;            color: var(--secondary);
+            text-shadow: 0 0 10px rgba(255, 193, 7, 0.8);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .artist-image::before {
+            content: "";
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 8s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        h1 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 4.5rem;
+            margin-bottom: 5px;
+            background: var(--kasi-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+            letter-spacing: 3px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        h1::after {
+            content: "ARTISTIKS";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            color: rgba(255, 255, 255, 0.15);
+            text-shadow: none;
+            z-index: -1;
+            letter-spacing: 5px;
+            animation: pulse 3s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.1; }            50% { opacity: 0.25; }
+        }
+        
+        .artist-tagline {
+            font-family: 'Permanent Marker', cursive;
+            font-size: 1.4rem;
+            color: var(--secondary);
+            margin: 8px 0 15px;
+            text-shadow: 0 0 8px rgba(255, 193, 7, 0.7);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: var(--kasi-gradient);
+            color: white;
+            font-size: 1.4rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .social-links a::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.7s;        }
+        
+        .social-links a:hover::before {
+            left: 100%;
+        }
+        
+        .social-links a:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 7px 25px rgba(255, 107, 0, 0.6);
+            border-color: white;
+        }
+        
+        .social-links a.facebook { background: linear-gradient(45deg, #1877f2, #0d57d6); }
+        .social-links a.youtube { background: linear-gradient(45deg, #ff0000, #cc0000); }
+        .social-links a.tiktok { background: linear-gradient(45deg, #69c9d0, #25f4ee, #fe2c55); }
+        .social-links a.spotify { background: linear-gradient(45deg, #1DB954, #1ed760); }
+        .social-links a.spotify:hover {
+            box-shadow: 0 7px 25px rgba(29, 185, 84, 0.6);
+        }
+        
+        .content-section {
+            background: rgba(30, 30, 30, 0.38);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 35px;
+            box-shadow: var(--urban-shadow);
+            border: 2px solid rgba(255, 107, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .content-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--kasi-gradient);
+        }
+        
+        h2, h4, h5 {
+            font-family: 'Bebas Neue', cursive;
+            color: var(--secondary);
+            margin-bottom: 20px;
+            font-size: 2.4rem;
+            letter-spacing: 2px;
+            position: relative;
+            display: inline-block;
+        }        
+        h2::after, h4::after, h5::after {
+            content: "";
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+        
+        p {
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: #e0e0e0;
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .highlight {
+            color: var(--secondary);
+            font-weight: 700;
+            text-shadow: 0 0 8px rgba(255, 193, 7, 0.5);
+        }
+        
+        /* Photo Gallery Styles */
+        .gallery-section { margin: 45px 0; }
+        .gallery-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.7), var(--street-glow);
+            border: 3px solid var(--accent);
+            background: #0a0a0a;
+        }
+        .gallery-slide {
+            display: none;
+            width: 100%;
+            height: 550px;
+            background-size: cover;
+            background-position: center;
+            background-color: #0a0a0a;
+            position: relative;
+        }
+        .gallery-slide.active { display: block; animation: fadeIn 0.8s ease-in-out; }        @keyframes fadeIn { from { opacity: 0.7; transform: scale(1.02); } to { opacity: 1; transform: scale(1); } }
+        .gallery-slide::before, .gallery-slide::after {
+            content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 1;
+        }
+        .gallery-slide::before {
+            background: radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.04) 40%, transparent 70%);
+            animation: rotate 10s linear infinite;
+        }
+        .gallery-slide::after {
+            background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, transparent 50%, rgba(0,0,0,0.15) 100%);
+        }
+        .gallery-caption {
+            position: absolute; bottom: 30px; left: 30px; right: 30px; z-index: 3; color: white;
+            font-weight: 700; font-size: 1.5rem; text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+            padding: 12px 20px; background: rgba(26, 26, 26, 0.85); border-left: 4px solid var(--primary);
+            border-radius: 0 12px 12px 0; max-width: 85%;
+        }
+        .gallery-nav {
+            position: absolute; top: 50%; transform: translateY(-50%); background: rgba(26, 26, 26, 0.85);
+            color: var(--secondary); border: none; width: 55px; height: 55px; border-radius: 50%;
+            font-size: 1.6rem; cursor: pointer; z-index: 3; display: flex; align-items: center; justify-content: center;
+            transition: all 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+        .gallery-nav:hover { background: var(--primary); color: white; transform: translateY(-50%) scale(1.1); }
+        .gallery-nav.prev { left: 25px; }
+        .gallery-nav.next { right: 25px; }
+        .gallery-counter {
+            position: absolute; top: 25px; right: 25px; background: rgba(26, 26, 26, 0.85);
+            color: var(--secondary); padding: 6px 18px; border-radius: 25px; font-weight: bold;
+            z-index: 3; border: 2px solid var(--primary); font-family: 'Bebas Neue', cursive; letter-spacing: 1px; font-size: 1.1rem;
+        }
+        
+        /* YouTube Embed Styles */
+        .youtube-section { margin: 45px 0; }
+        .video-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); 
+            gap: 30px; 
+            margin-top: 25px; 
+        }
+        .video-card {
+            background: rgba(30, 30, 30, 0.38); 
+            border-radius: 20px; 
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); 
+            border: 2px solid rgba(255, 107, 0, 0.2);
+            transition: all 0.4s ease; 
+            position: relative;
+        }
+        .video-card:hover {            transform: translateY(-10px); 
+            box-shadow: 0 15px 40px rgba(255, 107, 0, 0.4), var(--street-glow); 
+            border-color: var(--secondary);
+        }
+        .video-card::before {
+            content: ""; 
+            position: absolute; 
+            top: 0; left: 0; 
+            width: 100%; height: 4px; 
+            background: var(--kasi-gradient);
+        }
+        .video-embed-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 16px 16px 0 0;
+            background: #000;
+        }
+        .video-embed-container iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: 0;
+        }
+        .video-info { padding: 20px; }
+        .video-title {
+            font-weight: 700; 
+            font-size: 1.3rem; 
+            margin-bottom: 10px; 
+            color: white;
+            display: -webkit-box; 
+            -webkit-line-clamp: 2; 
+            -webkit-box-orient: vertical; 
+            overflow: hidden;
+        }
+        .video-meta { 
+            display: flex; 
+            justify-content: space-between; 
+            color: var(--gray); 
+            font-size: 0.95rem; 
+        }
+        .video-views {
+            background: rgba(255, 107, 0, 0.15); 
+            padding: 4px 12px; 
+            border-radius: 18px; 
+            font-weight: 500;
+            display: flex; align-items: center; gap: 5px;
+        }        .watch-all {
+            display: block; 
+            width: fit-content; 
+            margin: 30px auto 20px; 
+            padding: 14px 40px;
+            background: var(--kasi-gradient); 
+            color: white; 
+            border: none; 
+            border-radius: 50px;
+            font-family: 'Bebas Neue', cursive; 
+            font-size: 1.5rem; 
+            letter-spacing: 2px; 
+            cursor: pointer;
+            transition: all 0.3s; 
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4); 
+            position: relative; 
+            overflow: hidden;
+            text-decoration: none;
+        }
+        .watch-all::after {
+            content: ""; 
+            position: absolute; top: 0; left: -100%; 
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent); 
+            transition: left 0.7s;
+        }
+        .watch-all:hover::after { left: 100%; }
+        .watch-all:hover { 
+            transform: translateY(-3px); 
+            box-shadow: 0 8px 25px rgba(255, 107, 0, 0.6); 
+        }
+        
+        /* YouTube Shorts Section */
+        .shorts-section { margin: 45px 0; }
+        .shorts-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        .short-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            background: rgba(30, 30, 30, 0.38);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), var(--street-glow);            border: 3px solid var(--primary);
+            transition: all 0.4s ease;
+        }
+        .short-wrapper:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(255, 107, 0, 0.4), var(--street-glow);
+            border-color: var(--secondary);
+        }
+        .short-wrapper::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--kasi-gradient);
+            z-index: 2;
+        }
+        .short-embed {
+            width: 100%;
+            aspect-ratio: 9/16;
+            max-height: 700px;
+            border: none;
+            display: block;
+            border-radius: 16px 16px 0 0;
+        }
+        .short-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, #ff0000, #cc0000);
+            color: white;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            z-index: 3;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .short-info {
+            padding: 20px;
+            background: rgba(26, 26, 26, 0.9);
+            border-top: 2px solid rgba(255, 107, 0, 0.3);
+        }
+        .short-title {            font-family: 'Bebas Neue', cursive;
+            font-size: 1.6rem;
+            color: var(--secondary);
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+        .short-description {
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        .short-stats {
+            display: flex;
+            gap: 20px;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255, 107, 0, 0.2);
+        }
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--secondary);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        .stat-item i {
+            color: var(--primary);
+        }
+        
+        /* Spotify Embed Section */
+        .spotify-section { margin: 45px 0; }
+        .spotify-embed-wrapper {
+            max-width: 700px;
+            margin: 0 auto;
+            border-radius: 18px;
+            overflow: hidden;
+            border: 2px solid rgba(255, 107, 0, 0.35);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5), 0 0 12px rgba(255,107,0,0.2);
+        }
+        .spotify-embed-wrapper iframe {
+            display: block;
+            width: 100%;
+            border-radius: 16px;
+        }
+        
+        /* Street tags decoration */
+        .street-tag {
+            position: absolute; 
+            font-family: 'Permanent Marker', cursive;            color: rgba(255, 193, 7, 0.2);
+            font-size: 3.5rem; 
+            z-index: 1; 
+            opacity: 0.7; 
+            text-shadow: 0 0 10px rgba(255, 107, 0, 0.5);
+            pointer-events: none; 
+            animation: ascendTag 9s ease-in-out infinite;
+        }
+        .tag-1 { left: 5%; animation-delay: 0s; --rot-a: -14deg; --rot-b: -6deg; }
+        .tag-2 { right: 8%; animation-delay: -3s; --rot-a: 8deg; --rot-b: 3deg; font-size: 3rem; }
+        .tag-3 { left: 10%; animation-delay: -6s; --rot-a: 12deg; --rot-b: 5deg; font-size: 3.2rem; }
+        .tag-4 { right: 5%; animation-delay: -1.5s; --rot-a: -9deg; --rot-b: -3deg; }
+        @keyframes ascendTag {
+            0% { transform: translateY(120vh) rotate(var(--rot-a, -10deg)); opacity: 0; }
+            8% { opacity: 0.7; }
+            45% { transform: translateY(55vh) rotate(var(--rot-b, 5deg)); opacity: 0.65; }
+            80% { transform: translateY(-10vh) rotate(var(--rot-a, -10deg)); opacity: 0.35; }
+            100% { transform: translateY(-30vh) rotate(var(--rot-b, 5deg)); opacity: 0; }
+        }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        
+        /* Footer */
+        footer {
+            text-align: center; 
+            padding: 30px; 
+            margin-top: 25px; 
+            color: var(--gray);
+            font-size: 1rem; 
+            position: relative; 
+            border-top: 1px solid rgba(255, 107, 0, 0.3);
+        }
+        footer::before {
+            content: "KASI NOVA"; 
+            position: absolute; 
+            top: -18px; 
+            left: 50%; 
+            transform: translateX(-50%);
+            background: #0a0a0a; 
+            padding: 0 20px; 
+            font-family: 'Bebas Neue', cursive;
+            color: var(--secondary); 
+            font-size: 1.4rem; 
+            letter-spacing: 3px;
+        }
+        .dev-credit {
+            margin-top: 12px; 
+            color: var(--secondary); 
+            font-weight: 500;
+            display: flex; 
+            align-items: center;            justify-content: center; 
+            gap: 8px;
+            font-size: 1rem;
+        }
+        .dev-credit i { 
+            color: var(--primary); 
+            animation: pulseHeart 1.5s infinite; 
+        }
+        @keyframes pulseHeart { 
+            0%, 100% { transform: scale(1); } 
+            50% { transform: scale(1.3); } 
+        }
+        
+        /* ========== RESPONSIVE BREAKPOINTS ========== */
+        
+        /* Tablet (768px - 1024px) */
+        @media (min-width: 768px) and (max-width: 1024px) {
+            .container { max-width: 95%; }
+            .graffiti-header { padding: 35px 25px; }
+            h1 { font-size: 4rem; }
+            .artist-image { width: 200px; height: 200px; }
+            .content-section { padding: 28px; }
+            h4, h5 { font-size: 2.2rem; }
+            p { font-size: 1.05rem; }
+            .gallery-container { max-width: 550px; }
+            .gallery-slide { height: 480px; }
+            .video-grid { grid-template-columns: repeat(2, 1fr); gap: 25px; }
+            .video-card { border-radius: 18px; }
+            .spotify-embed-wrapper { max-width: 650px; }
+            .short-wrapper { max-width: 350px; }
+        }
+        
+        /* Desktop (1025px and up) */
+        @media (min-width: 1025px) {
+            body { padding: 30px 40px; }
+            .container { 
+                max-width: 1300px; 
+                padding: 0 30px;
+            }
+            .graffiti-header { 
+                padding: 50px 40px; 
+                margin-bottom: 45px;
+                border-radius: 25px;
+            }
+            h1 { 
+                font-size: 5.5rem; 
+                letter-spacing: 4px;
+            }
+            .artist-image { 
+                width: 260px;                height: 260px; 
+                border-width: 5px;
+                box-shadow: 0 0 35px rgba(255, 107, 0, 0.7), 
+                            0 0 55px rgba(230, 57, 70, 0.5),
+                            inset 0 0 25px rgba(0, 0, 0, 0.3);
+            }
+            .artist-tagline { font-size: 1.6rem; }
+            .social-links { gap: 20px; }
+            .social-links a { 
+                width: 65px; 
+                height: 65px; 
+                font-size: 1.6rem;
+                border-width: 3px;
+            }
+            .content-section { 
+                padding: 40px 35px; 
+                margin-bottom: 45px;
+                border-radius: 25px;
+                border-width: 3px;
+            }
+            h4, h5 { 
+                font-size: 2.8rem; 
+                letter-spacing: 3px;
+            }
+            h4::after, h5::after {
+                bottom: -10px;
+                height: 4px;
+            }
+            p { 
+                font-size: 1.2rem; 
+                line-height: 1.9;
+                max-width: 850px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .highlight { text-shadow: 0 0 12px rgba(255, 193, 7, 0.7); }
+            
+            /* Gallery - Desktop */
+            .gallery-section { margin: 55px 0; }
+            .gallery-container { 
+                max-width: 750px; 
+                border-radius: 25px;
+                border-width: 4px;
+            }
+            .gallery-slide { height: 600px; }
+            .gallery-caption { 
+                font-size: 1.7rem; 
+                padding: 15px 25px;
+                bottom: 35px;
+                left: 35px;                right: 35px;
+            }
+            .gallery-nav { 
+                width: 65px; 
+                height: 65px; 
+                font-size: 1.8rem;
+            }
+            .gallery-nav.prev { left: 30px; }
+            .gallery-nav.next { right: 30px; }
+            .gallery-counter { 
+                top: 30px; 
+                right: 30px; 
+                padding: 8px 22px; 
+                font-size: 1.2rem;
+            }
+            
+            /* YouTube - Desktop */
+            .youtube-section { margin: 55px 0; }
+            .video-grid { 
+                grid-template-columns: repeat(2, 1fr); 
+                gap: 35px; 
+                margin-top: 30px;
+            }
+            .video-card { 
+                border-radius: 22px; 
+                border-width: 3px;
+            }
+            .video-embed-container { border-radius: 20px 20px 0 0; }
+            .video-info { padding: 25px; }
+            .video-title { font-size: 1.4rem; }
+            .video-meta { font-size: 1rem; }
+            .watch-all { 
+                padding: 16px 50px; 
+                font-size: 1.7rem;
+                margin: 35px auto 25px;
+            }
+            
+            /* Shorts - Desktop */
+            .shorts-section { margin: 55px 0; }
+            .short-wrapper { 
+                max-width: 420px;
+                border-radius: 22px;
+                border-width: 3px;
+            }
+            .short-embed { border-radius: 20px 20px 0 0; }
+            .short-info { padding: 25px; }
+            .short-title { font-size: 1.7rem; }
+            
+            /* Spotify - Desktop */
+            .spotify-section { margin: 55px 0; }            .spotify-embed-wrapper { 
+                max-width: 800px;
+                border-radius: 22px;
+                border-width: 3px;
+            }
+            
+            /* Footer - Desktop */
+            footer { 
+                padding: 35px; 
+                font-size: 1.05rem;
+            }
+            footer::before { 
+                top: -22px; 
+                font-size: 1.6rem; 
+                padding: 0 25px;
+            }
+            .dev-credit { font-size: 1.05rem; }
+            
+            /* Street tags - Desktop */
+            .street-tag { font-size: 4.5rem; }
+        }
+        
+        /* Large Desktop (1440px+) */
+        @media (min-width: 1440px) {
+            .container { max-width: 1400px; }
+            .graffiti-header::before { font-size: 10rem; }
+            .graffiti-header::after { font-size: 9rem; }
+            h1 { font-size: 6.5rem; }
+            .artist-image { width: 280px; height: 280px; }
+            .gallery-container { max-width: 850px; }
+            .gallery-slide { height: 650px; }
+            .video-grid { gap: 45px; }
+            .spotify-embed-wrapper { max-width: 900px; }
+            .short-wrapper { max-width: 450px; }
+        }
+        
+        /* Mobile (keep original - max-width: 480px) */
+        @media (max-width: 767px) {
+            h1 { font-size: 3.8rem; }
+            .artist-image { width: 190px; height: 190px; }
+            .social-links a { width: 48px; height: 48px; font-size: 1.2rem; }
+            .content-section { padding: 25px; }
+            h4, h5 { font-size: 2rem; }
+            .gallery-container { max-width: 100%; }
+            .gallery-slide { height: 420px; }
+            .video-grid { grid-template-columns: 1fr; }
+            .video-card { border-radius: 16px; }
+            .spotify-embed-wrapper { max-width: 100%; }
+            .spotify-embed-wrapper iframe { height: 152px; }
+            .shorts-container { flex-direction: column; }            .short-wrapper { max-width: 100%; }
+        }
+        
+        /* Small Mobile (max-width: 480px) */
+        @media (max-width: 480px) {
+            body { padding: 15px; }
+            h1 { font-size: 3.2rem; }
+            .artist-tagline { font-size: 1.2rem; }
+            .social-links a { width: 45px; height: 45px; font-size: 1.1rem; }
+            .content-section { padding: 22px 18px; }
+            h4, h5 { font-size: 1.9rem; }
+            p { font-size: 1rem; }
+            .gallery-slide { height: 380px; }
+            .gallery-caption { font-size: 1.3rem; padding: 10px 15px; }
+            .gallery-nav { width: 48px; height: 48px; font-size: 1.4rem; }
+            .video-info { padding: 15px; }
+            .video-title { font-size: 1.15rem; }
+            .watch-all { padding: 12px 30px; font-size: 1.3rem; }
+            .spotify-embed-wrapper iframe { height: 152px; }
+            .short-embed { aspect-ratio: 9/16; max-height: 600px; }
+            .short-info { padding: 15px; }
+            .short-title { font-size: 1.4rem; }
+            footer { padding: 25px 15px; }
+            footer::before { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="street-tag tag-1">KASI</div>
+    <div class="street-tag tag-2">STREET</div>
+    <div class="street-tag tag-3">REAL</div>
+    <div class="street-tag tag-4">NOVA</div>
+
+    <div class="container">
+        <header class="graffiti-header">
+            <div class="artist-profile">
+                <!-- ✅ Artist logo - now in same folder as index.html -->
+                <img src="artistimg.jpg" alt="ArtiStiks" class="artist-image">
+                <h1>ARTISTIKS</h1>
+                <div class="artist-tagline">Voice of the Kasi • Raw Stories • Real Life</div>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/Artistikscontent" target="_blank" class="facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://youtube.com/@artistiks-ai?si=TBdQ7w2GAwGh5gEP" target="_blank" class="youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.tiktok.com/@artistikscontent?_r=1&_t=ZS-94oDGI34BN6" target="_blank" class="tiktok" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://open.spotify.com/artist/4POSIOIPmFiECkXpFzSuTt?si=GPZv1rswT5Wu38YNK4dLtg" target="_blank" class="spotify" aria-label="Spotify"><i class="fab fa-spotify"></i></a>
+                </div>
+            </div>
+        </header>
+        
+        <div class="content-section">            <h4>THE ARTIST</h4>
+            <p>ArtiStiks is a <span class="highlight">rising force</span> from KwaThema, whose music is rooted in <span class="highlight">real-life experiences</span> and the untold stories of kasi life. Known for blending raw storytelling with authentic street emotion, he uses his sound to reflect the struggles, growth, and resilience of his upbringing.</p>
+            <p>In 2022, he made his mark by hosting the successful <span class="highlight">Hustle Fest</span>, and continued building his presence with a standout appearance on <span class="highlight">Unplugged and Unreleased</span> in 2024. His artistry is driven by a mission to give a voice to the realities often overlooked by the mainstream.</p>
+            <p>With his upcoming EP <span class="highlight">"Kasi Nova,"</span> ArtiStiks invites listeners into his world—one shaped by hustle, survival, and ambition—cementing his place as one of the voices to watch from the new wave of South African hip hop.</p>
+        </div>
+        
+        <!-- Gallery Section -->
+        <div class="content-section gallery-section">
+            <h4>KASI GALLERY</h4>
+            <p>Behind the scenes, studio sessions, and moments from the streets that inspire the music.</p>
+            <div class="gallery-container">
+                <!-- ✅ All gallery images now reference files in same folder as index.html -->
+                <div class="gallery-slide active" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7)), url('Photo1.jpg');"><div class="gallery-caption">Studio Sessions • Kasi Nova EP Recording</div></div>
+                <div class="gallery-slide" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7)), url('Photo2.jpg');"><div class="gallery-caption">Hustle Fest 2022 • KwaThema Community</div></div>
+                <div class="gallery-slide" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7)), url('Photo3.jpg');"><div class="gallery-caption">Street Photography • Kasi Life Series</div></div>
+                <div class="gallery-slide" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7)), url('Photo4.jpg');"><div class="gallery-caption">Live EP • Unplugged & Unreleased 2024</div></div>
+                <div class="gallery-slide" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7)), url('Photo5.jpg');"><div class="gallery-caption">Creative Process • Writing Sessions</div></div>
+                <div class="gallery-slide" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7)), url('Photo6.jpg');"><div class="gallery-caption">Kasi Vibes • Community Moments</div></div>
+                <div class="gallery-counter"><span id="currentSlide">1</span> / 6</div>
+                <button class="gallery-nav prev" id="prevSlide"><i class="fas fa-chevron-left"></i></button>
+                <button class="gallery-nav next" id="nextSlide"><i class="fas fa-chevron-right"></i></button>
+                <div class="gallery-controls" id="galleryDots"></div>
+            </div>
+        </div>
+        
+        <!-- YouTube Section - ONLY 2 EMBEDS -->
+        <div class="content-section youtube-section">
+            <h4>WATCH & VIBE</h4>
+            <p>Official music videos, live performances, behind-the-scenes content, and exclusive interviews.</p>
+            <div class="video-grid">
+                
+                <!-- Video 1: Radio Interview @HillbrowRadioTV9143 -->
+                <div class="video-card">
+                    <div class="video-embed-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/EWPM-iMCyT8?si=xOrdaowigOGABdyt" 
+                            title="Radio Interview @HillbrowRadioTV9143"
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen
+                            loading="lazy">
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-title">Radio Interview @HillbrowRadioTV9143</div>
+                        <div class="video-meta">
+                            <span>Exclusive Interview</span>
+                            <span class="video-views"><i class="fab fa-youtube"></i> Watch Now</span>
+                        </div>
+                    </div>                </div>
+                
+                <!-- Video 2: Ushun-Weyng'ni -->
+                <div class="video-card">
+                    <div class="video-embed-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/A2zpprS0EDE?si=jJ36EWrgxXiEBhjM" 
+                            title="Ushun-Weyng'ni"
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen
+                            loading="lazy">
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-title">Ushun-Weyng'ni • Official Audio</div>
+                        <div class="video-meta">
+                            <span>Latest Release</span>
+                            <span class="video-views"><i class="fab fa-youtube"></i> Watch Now</span>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <a href="https://youtube.com/@artistiks-ai?si=TBdQ7w2GAwGh5gEP" target="_blank" class="watch-all">MORE ON YOUTUBE <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <!-- YouTube Shorts Section -->
+        <div class="content-section shorts-section">
+            <h4>SHORTS & REELS</h4>
+            <p>Quick hits, behind-the-scenes moments, and kasi vibes in bite-sized content.</p>
+            
+            <div class="shorts-container">
+                <div class="short-wrapper">
+                    <div class="short-badge">
+                        <i class="fab fa-youtube"></i> YOUTUBE SHORT
+                    </div>
+                    <iframe 
+                        class="short-embed"
+                        src="https://www.youtube.com/embed/1nxO8akNHVk" 
+                        title="ArtiStiks YouTube Short"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen
+                        loading="lazy">
+                    </iframe>
+                    <div class="short-info">
+                        <h3 class="short-title">Kasi Moments</h3>
+                        <p class="short-description">Raw snippets from the streets, studio sessions, and real kasi life experiences. Stay locked for more behind-the-scenes content.</p>
+                        <div class="short-stats">
+                            <div class="stat-item">                                <i class="fas fa-eye"></i>
+                                <span>12.5K views</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-heart"></i>
+                                <span>1.2K likes</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Spotify Embed Section -->
+        <div class="content-section spotify-section">
+            <h5>STREAM THE SOUND</h5>
+            <p>Listen to ArtiStiks' latest tracks on Spotify.</p>
+            <div class="spotify-embed-wrapper">
+                <iframe 
+                    src="https://open.spotify.com/embed/track/6Qz5zAKnLkVhzHQAZDJAge?theme=1&utm_source=generator" 
+                    height="152"
+                    frameBorder="0" 
+                    allowtransparency="true" 
+                    allow="encrypted-media; autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                    style="border-radius:12px;">
+                </iframe>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>© 2026 ArtiStiks • All Rights Reserved • ® </p>
+        <div class="dev-credit"><i class="fas fa-heart"></i> Designed & Powered by DTGO dev</div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // ==================== GALLERY LOGIC ====================
+            const slides = document.querySelectorAll('.gallery-slide');
+            const dotsContainer = document.getElementById('galleryDots');
+            const currentSlideEl = document.getElementById('currentSlide');
+            
+            slides.forEach((_, i) => {
+                const dot = document.createElement('div');
+                dot.classList.add('gallery-dot');
+                if(i === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => {
+                    slides.forEach(s => s.classList.remove('active'));
+                    dotsContainer.querySelectorAll('.gallery-dot').forEach(d => d.classList.remove('active'));
+                    slides[i].classList.add('active');                     dot.classList.add('active');
+                    currentSlideEl.textContent = i + 1;
+                });
+                dotsContainer.appendChild(dot);
+            });
+            
+            document.getElementById('prevSlide').addEventListener('click', () => {
+                const idx = Array.from(slides).findIndex(s => s.classList.contains('active'));
+                const next = (idx - 1 + slides.length) % slides.length;
+                dotsContainer.children[next].click();
+            });
+            
+            document.getElementById('nextSlide').addEventListener('click', () => {
+                const idx = Array.from(slides).findIndex(s => s.classList.contains('active'));
+                const next = (idx + 1) % slides.length;
+                dotsContainer.children[next].click();
+            });
+        });
+    </script>
+</body>
+</html>
